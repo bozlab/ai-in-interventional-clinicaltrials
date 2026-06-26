@@ -49,6 +49,11 @@ Data is loaded directly from pinned GitHub raw URLs in Power Query, ensuring any
 ├── data/                     # Source data files
 └── README.md
 ```
+---
+
+## Dashboard Preview
+
+![Dashboard Preview](images/dashboard-preview.png)
 
 ---
 
