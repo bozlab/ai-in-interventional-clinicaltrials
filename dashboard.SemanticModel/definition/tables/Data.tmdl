@@ -73,7 +73,7 @@ table Data
 		annotation SummarizationSetBy = Automatic
 
 	column StartYear
-		dataType: int64
+		dataType: double
 		formatString: 0
 		lineageTag: 295aa725-ed40-4121-83b0-63e72fd03575
 		summarizeBy: sum
@@ -98,7 +98,7 @@ table Data
 		annotation SummarizationSetBy = Automatic
 
 	column num_sites
-		dataType: int64
+		dataType: double
 		formatString: 0
 		lineageTag: adcaf1de-d751-4e1e-8c5d-b4ba0ad4dac6
 		summarizeBy: sum
@@ -123,7 +123,7 @@ table Data
 		annotation SummarizationSetBy = Automatic
 
 	column num_enrolled
-		dataType: int64
+		dataType: double
 		formatString: 0
 		lineageTag: 8bb68123-9ef0-4da3-afe1-83e12c618368
 		summarizeBy: sum
@@ -151,17 +151,12 @@ table Data
 		mode: import
 		source =
 				let
-				    Source = Excel.Workbook(File.Contents("C:\Users\watso\Desktop\dashboard\data\final-included-studies_n1212_abbrev.xlsx"), null, true),
-				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
-				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
-				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"NCTId", type text}, {"Title", type text}, {"Status", type text}, {"BriefSummary", type text}, {"Condition", type text}, {"Phase", type text}, {"StudyType", type text}, {"StartYear", Int64.Type}, {"PrimaryPurpose", type text}, {"Country", type text}, {"num_sites", Int64.Type}, {"InterventionType", type text}, {"InterventionName", type text}, {"num_enrolled", Int64.Type}, {"What kind of AI?", type text}, {"Data Modality", type text}}),
-				    #"Split Column by Delimiter" = Table.ExpandListColumn(Table.TransformColumns(#"Changed Type", {{"Country", Splitter.SplitTextByDelimiter(";", QuoteStyle.Csv), let itemType = (type nullable text) meta [Serialized.Text = true] in type {itemType}}}), "Country"),
-				    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"Country", type text}}),
-				    #"Trimmed Text" = Table.TransformColumns(#"Changed Type1",{{"Country", Text.Trim, type text}})
+				    Source = Excel.Workbook(Web.Contents("https://raw.githubusercontent.com/bozlab/ai-in-interventional-clinicaltrials/8f472de15c930104fb7136de4bf887162ef27213/data/final-included-studies_n1212_abbrev.xlsx"), true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data]
 				in
-				    #"Trimmed Text"
+				    Sheet1_Sheet
 
 	annotation PBI_NavigationStepName = Navigation
 
-	annotation PBI_ResultType = Exception
+	annotation PBI_ResultType = Table
 

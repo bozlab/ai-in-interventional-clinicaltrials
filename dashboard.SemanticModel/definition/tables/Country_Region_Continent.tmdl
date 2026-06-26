@@ -34,26 +34,26 @@ table Country_Region_Continent
 		annotation SummarizationSetBy = Automatic
 
 	column World
-		dataType: string
+		dataType: double
 		lineageTag: 39582deb-906c-4da7-94fe-0950c2344619
 		summarizeBy: none
 		sourceColumn: World
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	partition Country_Region_Continent = m
 		mode: import
 		source =
 				let
-				    Source = Excel.Workbook(File.Contents("C:\Users\watso\Desktop\dashboard\data\Country_Region_Continent_Mapping.xlsx"), null, true),
+				    Source = Excel.Workbook(Web.Contents("https://raw.githubusercontent.com/bozlab/ai-in-interventional-clinicaltrials/8f472de15c930104fb7136de4bf887162ef27213/data/Country_Region_Continent_Mapping.xlsx"), true),
 				    Country_Region_Continent_Sheet = Source{[Item="Country_Region_Continent",Kind="Sheet"]}[Data],
-				    #"Changed Type" = Table.TransformColumnTypes(Country_Region_Continent_Sheet,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}}),
-				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
-				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Country", type text}, {"World Region", type text}, {"Continent", type text}})
+				    #"Changed Type" = Table.TransformColumnTypes(Country_Region_Continent_Sheet,{{"Country", type text}, {"World Region", type text}, {"Continent", type text}})
 				in
-				    #"Changed Type1"
+				    #"Changed Type"
 
 	annotation PBI_NavigationStepName = Navigation
 
-	annotation PBI_ResultType = Exception
+	annotation PBI_ResultType = Table
 
