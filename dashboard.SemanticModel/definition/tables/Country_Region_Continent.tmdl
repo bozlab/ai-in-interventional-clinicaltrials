@@ -1,0 +1,59 @@
+table Country_Region_Continent
+	lineageTag: 8d0d9f87-8a02-4009-b729-a33d57f534d9
+
+	column Country
+		dataType: string
+		lineageTag: aea79165-9863-4949-b34c-b26e7a28860a
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'World Region'
+		dataType: string
+		lineageTag: a8581e1f-98b7-4d4e-9fce-8a051401b17c
+		summarizeBy: none
+		sourceColumn: World Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Continent
+		dataType: string
+		lineageTag: 906b5cb9-1ee3-4d21-868a-6991585b06d2
+		summarizeBy: none
+		sourceColumn: Continent
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column4
+		dataType: string
+		lineageTag: bfdce807-7bb0-4c4c-8d2c-5b30adc3f948
+		summarizeBy: none
+		sourceColumn: Column4
+
+		annotation SummarizationSetBy = Automatic
+
+	column World
+		dataType: string
+		lineageTag: 39582deb-906c-4da7-94fe-0950c2344619
+		summarizeBy: none
+		sourceColumn: World
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Country_Region_Continent = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\watso\Desktop\dashboard\data\Country_Region_Continent_Mapping.xlsx"), null, true),
+				    Country_Region_Continent_Sheet = Source{[Item="Country_Region_Continent",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Country_Region_Continent_Sheet,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Country", type text}, {"World Region", type text}, {"Continent", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

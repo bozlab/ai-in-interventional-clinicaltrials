@@ -1,0 +1,167 @@
+table Data
+	lineageTag: 31ad1314-9068-471d-b841-2e7bcf8a2ebe
+
+	measure 'Total Publications' = DISTINCTCOUNT(Data[NCTId])
+		formatString: #,0
+		lineageTag: b8048a15-b64c-4c67-a45d-a67c9b7c5e90
+
+	measure 'Total Enrolled (Distinct Docs)' = ```
+			
+			SUMX(
+			    VALUES('Data'[NCTId]),
+			    CALCULATE(SUM('Data'[num_enrolled]))
+			)
+			
+			```
+		formatString: 0
+		lineageTag: bdbe75ab-3399-4162-aca1-a7d99e4362ea
+
+	column NCTId
+		dataType: string
+		lineageTag: 068b9fed-7aec-4e36-8408-2fb1e56c539c
+		summarizeBy: none
+		sourceColumn: NCTId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		lineageTag: 65770227-8eac-4c62-a7e3-2cfab08bb5cc
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: c830b39c-4b42-4ae3-a535-1f1797f88151
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column BriefSummary
+		dataType: string
+		lineageTag: 751d661f-0cc3-45ab-8664-bc8733c1bd1a
+		summarizeBy: none
+		sourceColumn: BriefSummary
+
+		annotation SummarizationSetBy = Automatic
+
+	column Condition
+		dataType: string
+		lineageTag: 339c2c0a-ca52-48cf-8977-94487fed13a9
+		summarizeBy: none
+		sourceColumn: Condition
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phase
+		dataType: string
+		lineageTag: 6ab45603-ab6e-4650-889c-7ee1f2e2e962
+		summarizeBy: none
+		sourceColumn: Phase
+
+		annotation SummarizationSetBy = Automatic
+
+	column StudyType
+		dataType: string
+		lineageTag: 2e4ce5a4-a0fa-486f-84a8-aa8abf063cee
+		summarizeBy: none
+		sourceColumn: StudyType
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartYear
+		dataType: int64
+		formatString: 0
+		lineageTag: 295aa725-ed40-4121-83b0-63e72fd03575
+		summarizeBy: sum
+		sourceColumn: StartYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrimaryPurpose
+		dataType: string
+		lineageTag: 1bfdd704-1fdd-4556-9a80-c3d2a652c9fa
+		summarizeBy: none
+		sourceColumn: PrimaryPurpose
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: c1e88ea9-5d9e-42e5-8398-d9f710e8ae8d
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_sites
+		dataType: int64
+		formatString: 0
+		lineageTag: adcaf1de-d751-4e1e-8c5d-b4ba0ad4dac6
+		summarizeBy: sum
+		sourceColumn: num_sites
+
+		annotation SummarizationSetBy = Automatic
+
+	column InterventionType
+		dataType: string
+		lineageTag: 3dc20945-08b8-4c9a-86f5-2a50feb44721
+		summarizeBy: none
+		sourceColumn: InterventionType
+
+		annotation SummarizationSetBy = Automatic
+
+	column InterventionName
+		dataType: string
+		lineageTag: a3e7d641-0fd6-48ee-a902-cd0d8a0b1a56
+		summarizeBy: none
+		sourceColumn: InterventionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_enrolled
+		dataType: int64
+		formatString: 0
+		lineageTag: 8bb68123-9ef0-4da3-afe1-83e12c618368
+		summarizeBy: sum
+		sourceColumn: num_enrolled
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'What kind of AI?'
+		dataType: string
+		lineageTag: 624a625b-ddef-43ca-8eda-fc357c5bf7d2
+		summarizeBy: none
+		sourceColumn: What kind of AI?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Modality'
+		dataType: string
+		lineageTag: ddb6049e-6ac7-495b-b94d-f0ee03e03186
+		summarizeBy: none
+		sourceColumn: Data Modality
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Data = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\watso\Desktop\dashboard\data\final-included-studies_n1212_abbrev.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"NCTId", type text}, {"Title", type text}, {"Status", type text}, {"BriefSummary", type text}, {"Condition", type text}, {"Phase", type text}, {"StudyType", type text}, {"StartYear", Int64.Type}, {"PrimaryPurpose", type text}, {"Country", type text}, {"num_sites", Int64.Type}, {"InterventionType", type text}, {"InterventionName", type text}, {"num_enrolled", Int64.Type}, {"What kind of AI?", type text}, {"Data Modality", type text}}),
+				    #"Split Column by Delimiter" = Table.ExpandListColumn(Table.TransformColumns(#"Changed Type", {{"Country", Splitter.SplitTextByDelimiter(";", QuoteStyle.Csv), let itemType = (type nullable text) meta [Serialized.Text = true] in type {itemType}}}), "Country"),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"Country", type text}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Changed Type1",{{"Country", Text.Trim, type text}})
+				in
+				    #"Trimmed Text"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

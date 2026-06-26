@@ -1,0 +1,4 @@
+relationship AutoDetected_eb27fc98-09a3-49bc-a3f4-88c80ea63dc5
+	fromColumn: Data.Country
+	toColumn: Country_Region_Continent.Country
+
