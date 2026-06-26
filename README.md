@@ -61,7 +61,7 @@ Data is loaded directly from pinned GitHub raw URLs in Power Query, ensuring any
 
 If you use this dashboard or data in your own work, please cite:
 
-> Selen Bozkurt, PhD, Irem Kar, PhD, Sweta Balaji, BS, Nevruz Ilhanli, PhD, Selvi Ramalingam, MSc, MBA, Azra Ismail, PhD, Ravi Parikh, MD (2026). *Artificial Intelligence Use in Interventional Clinical Trials Registered on ClinicalTrials.gov*.
+> Selen Bozkurt, PhD, Irem Kar, PhD, Sweta Balaji, BS, Nevruz Ilhanli, PhD, Selvi Ramalingam, MSc, MBA, Azra Ismail, PhD, Ravi Parikh, MD (2026). *Artificial Intelligence Use in Interventional Clinical Trials Registered on ClinicalTrials.gov*. Dashboard - https://github.com/bozlab/ai-in-interventional-clinicaltrials/
 
 ---
 
