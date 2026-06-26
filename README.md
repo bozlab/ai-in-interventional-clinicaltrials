@@ -53,7 +53,7 @@ Data is loaded directly from pinned GitHub raw URLs in Power Query, ensuring any
 
 ## Dashboard Preview
 
-![Dashboard Preview](images/dashboard-preview.png)
+![Dashboard Preview](https://github.com/bozlab/ai-in-interventional-clinicaltrials/blob/master/images/dashboard-preview.png?raw=true)
 
 ---
 
