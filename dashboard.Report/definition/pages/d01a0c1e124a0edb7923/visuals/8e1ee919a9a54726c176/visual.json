@@ -184,5 +184,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "283f877ae80705ae5e79",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Country_Region_Continent"
+              }
+            },
+            "Property": "Continent"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4850004d05ff8aa6fcd4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Data"
+              }
+            },
+            "Property": "Total Publications"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }
