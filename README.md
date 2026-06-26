@@ -62,5 +62,5 @@ If you use this dashboard or data in your own work, please cite:
 
 ## Contact
 
-Your Name -- selen.bozkurt@emory.edu  
+Selen Bozkurt -- selen.bozkurt@emory.edu  
 Paper: *Artificial Intelligence Use in Interventional Clinical Trials Registered on ClinicalTrials.gov*
