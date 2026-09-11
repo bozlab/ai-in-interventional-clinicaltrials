@@ -14,6 +14,12 @@ this repository to support transparency and reproducibility.
 ## Dashboard Access
 The dashboard is open to all through this link: [AI-RCT Dashboard](https://9jl51x-sweta-balaji.shinyapps.io/ai-rct_dashboard/)  
 
+## Dashboard Preview
+
+![Dashboard Preview](<img width="1848" height="827" alt="Screenshot 2026-09-11 at 12 03 27 PM" src="https://github.com/user-attachments/assets/5c567797-bf76-4ad2-b476-c64b7027fc60" />)
+
+---
+
 ## Repository Structure
 
 ```
@@ -23,12 +29,6 @@ The dashboard is open to all through this link: [AI-RCT Dashboard](https://9jl51
 ├── data/                     # Source data files
 └── README.md
 ```
----
-
-## Dashboard Preview
-
-![Dashboard Preview](https://github.com/bozlab/ai-in-interventional-clinicaltrials/blob/master/images/dashboard-preview.png?raw=true)
-
 ---
 
 ## Citation
