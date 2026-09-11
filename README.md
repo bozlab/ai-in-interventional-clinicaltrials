@@ -12,7 +12,7 @@ All annotated data produced during the review process is included in
 this repository to support transparency and reproducibility.
 
 ## Dashboard Access
-The dashboard is open to all through this link: [AI-RCT Dashboard]([https://docs.github.com](https://9jl51x-sweta-balaji.shinyapps.io/ai-rct_dashboard/))  
+The dashboard is open to all through this link: [AI-RCT Dashboard](https://9jl51x-sweta-balaji.shinyapps.io/ai-rct_dashboard/)  
 
 ## Repository Structure
 
