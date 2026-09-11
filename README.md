@@ -15,8 +15,7 @@ this repository to support transparency and reproducibility.
 The dashboard is open to all through this link: [AI-RCT Dashboard](https://9jl51x-sweta-balaji.shinyapps.io/ai-rct_dashboard/)  
 
 ## Dashboard Preview
-
-![Dashboard Preview](<img width="1848" height="827" alt="Screenshot 2026-09-11 at 12 03 27 PM" src="https://github.com/user-attachments/assets/5c567797-bf76-4ad2-b476-c64b7027fc60" />)
+<img width="1848" height="827" alt="Screenshot 2026-09-11 at 12 03 27 PM" src="https://github.com/user-attachments/assets/ab65442f-f8c6-433e-bc9a-49e3c334d464" />
 
 ---
 
