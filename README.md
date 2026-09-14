@@ -8,8 +8,10 @@ study start dates from January 2022 onward that involved AI in any capacity.
 The dashboard allows users to explore trial characteristics including countries 
 in which studies were conducted, clinical condition, AI purpose, data modality, 
 number of trials by study start year, including trials with generative AI involvement.
-All annotated data produced during the review process is included in 
-this repository to support transparency and reproducibility.
+
+All annotated data produced during the review process, along with the R Code used 
+to develop the RShiny dashbord, is included in this repository to support 
+transparency and reproducibility.
 
 ## Dashboard Access
 The dashboard is open to all through this link: [AI-RCT Dashboard](https://9jl51x-sweta-balaji.shinyapps.io/ai-rct_dashboard/)  
