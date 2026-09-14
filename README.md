@@ -19,17 +19,6 @@ The dashboard is open to all through this link: [AI-RCT Dashboard](https://9jl51
 
 ---
 
-## Repository Structure
-
-```
-├── dashboard.pbip            # Power BI Project file
-├── dashboard.Report/         # Report definition (visuals, pages)
-├── dashboard.SemanticModel/  # Data model (measures, tables)
-├── data/                     # Source data files
-└── README.md
-```
----
-
 ## Citation
 
 If you use this dashboard or data in your own work, please cite:
